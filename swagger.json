@@ -89,7 +89,7 @@
             {
               "name": "id",
               "in": "path",
-              "description": "short id for a specific url i.e. part of a url except 'https://tier.app/'",
+              "description": "short id for a specific url. Short id is the last 6 characters of short url",
               "required": true,
               "type": "string"
             }

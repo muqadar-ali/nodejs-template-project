@@ -22,6 +22,13 @@ npm install
 npm start
 ```
 
+## Verify Uniqueness of short urls
+Feel free to run stress test to generate short urls to simulate concurrent users. Once stress test done, get the count of duplicate entries via ```/short/duplicates``` endpoint.
+
+I have verified the uniqueness via stress testing. Here are the details of load:
+1. Requests per second: 200
+2. Duration: 5 mins
+
 ## Built With
 
 * [NodeJs](https://nodejs.org/en/)
