@@ -7,14 +7,16 @@ GET {{baseURL}}/health HTTP/1.1
 ### shorten the url
 POST {{baseURL}}/short HTTP/1.1
 Content-Type: application/json
-
 {
-    "url": "https://helloworld.com"
+    "url": "https://google.com"
 }
 
 
 ### get original url by short id
 GET {{baseURL}}/short/07740c HTTP/1.1
 
+### get original url by short url
+GET {{baseURL}}/short?url=https://tier.app/07740c HTTP/1.1
+
 ### get duplicates count to verify uniqueness
-GET {{baseURL}}/short HTTP/1.1
+GET {{baseURL}}/short/duplicates HTTP/1.1

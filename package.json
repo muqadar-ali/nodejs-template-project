@@ -31,6 +31,7 @@
     "mongoose": "^6.2.2",
     "nodemon": "^2.0.15",
     "safe-json-stringify": "^1.2.0",
+    "swagger-ui-express": "^4.3.0",
     "uninstall": "0.0.0",
     "uuid": "^8.3.2",
     "winston": "^3.5.1"

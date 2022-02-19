@@ -4,6 +4,8 @@ const findById = async (id) => ShortUrl.findById(id)
 
 const findByShortId = async (shortId) => ShortUrl.findOne({ short_id: shortId })
 
+const findByShortURL = async (url) => ShortUrl.findOne({ new_url: url })
+
 const getDuplicatesCount = async () => {
     return ShortUrl.aggregate([
         {
@@ -23,5 +25,6 @@ const getDuplicatesCount = async () => {
 module.exports = {
     findById,
     findByShortId,
+    findByShortURL,
     getDuplicatesCount
 }

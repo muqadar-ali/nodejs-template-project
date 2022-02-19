@@ -1,0 +1,119 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is a url shortner server by tier.app",
+      "version": "1.0.0",
+      "title": "Swagger Url Shortner",
+      "termsOfService": "http://swagger.io/terms/"
+    },
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/health": {
+        "get": {
+          "tags": [
+            "health"
+          ],
+          "summary": "Verify application health",
+          "operationId": "health",
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/short": {
+        "get": {
+          "tags": [
+            "Get Original Url by Short Url"
+          ],
+          "summary": "Get original url by short url",
+          "operationId": "getOriginalUrlByUrl",
+          "parameters": [
+            {
+              "name": "url",
+              "in": "query",
+              "description": "short url",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        },
+        "post": {
+            "tags": [
+              "Shorten a url"
+            ],
+            "summary": "Shorten a given url",
+            "description": "",
+            "operationId": "shortenUrl",
+            "parameters": [
+              {
+                "name": "url",
+                "in": "body",
+                "description": "A url that needs to be shortened",
+                "required": true,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type":"string",
+                            "example": "https://about.tier.app/tier-talks-maas-tackling-the-challenge-of-open-ticketing/"
+                        }
+                    }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "successful operation"
+              }
+            }
+          }
+      },
+      "/short/{id}": {
+        "get": {
+          "tags": [
+            "Get Original Url by Short Id"
+          ],
+          "summary": "Get original url by short id",
+          "operationId": "getOriginalUrlByShortId",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "short id for a specific url i.e. part of a url except 'https://tier.app/'",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/short/duplicates": {
+        "get": {
+          "tags": [
+            "Number of Duplicate Short Urls"
+          ],
+          "summary": "Get number of duplicate short urls",
+          "description": "Get number of duplicates if any. \nThis is to verify the uniques of short urls",
+          "operationId": "numberOfDuplicates",
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      }
+    }
+  }

@@ -8,9 +8,17 @@ const generateShortUrl = async(req,res) => {
     })
 } 
 
-const getOriginalUrlByShort = async (req,res) => {
+const getOriginalUrlByShortId = async (req,res) => {
     const shortId = req.params.id
     const shortUrl = await ShortUrlDAL.findByShortId(shortId)
+    return res.send({
+        old_url: shortUrl.old_url
+    })
+}
+
+const getOriginalUrlByShortUrl = async (req,res) => {
+    const url = req.query.url
+    const shortUrl = await ShortUrlDAL.findByShortURL(url)
     return res.send({
         old_url: shortUrl.old_url
     })
@@ -25,6 +33,7 @@ const getDuplicatesCount = async (req,res) => {
 
 module.exports = {
     generateShortUrl,
-    getOriginalUrlByShort,
-    getDuplicatesCount
+    getOriginalUrlByShortId,
+    getDuplicatesCount,
+    getOriginalUrlByShortUrl
 }
