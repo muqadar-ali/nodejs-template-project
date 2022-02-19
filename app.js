@@ -25,7 +25,7 @@ app.use(errorHandlerMiddleware)
 logger.debug('Add health routes')
 app.use('/health', require('./routes/health'))
 logger.debug('Add url-shortner routes')
-app.use('/short', require('./routes/url_shortner'))
+app.use('/short', require('./routes/url_shorter'))
 
 module.exports={
     app
