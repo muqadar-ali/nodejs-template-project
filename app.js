@@ -3,8 +3,10 @@ const compression = require('compression')
 const expressValidator = require('express-validator')
 const useragent = require('express-useragent')
 const logger = require('./config/logger')
-const { loggerMiddleware, errorLoggerMiddleware } = require('./middlewares/http-logger')
+const { loggerMiddleware, errorLoggerMiddleware } = require('./middlewares/http_logger')
 const { boomifyErrorsMiddleware, errorHandlerMiddleware } = require('./middlewares/error')
+const connectMongoose = require('./config/connectMongoose')
+
 
 
 const app = express()
@@ -26,6 +28,10 @@ logger.debug('Add health routes')
 app.use('/health', require('./routes/health'))
 logger.debug('Add url-shortner routes')
 app.use('/short', require('./routes/url_shorter'))
+
+
+// connect mongoose
+connectMongoose()
 
 module.exports={
     app
