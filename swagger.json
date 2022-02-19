@@ -7,7 +7,8 @@
       "termsOfService": "http://swagger.io/terms/"
     },
     "schemes": [
-      "https"
+      "https",
+      "http"
     ],
     "paths": {
       "/health": {
