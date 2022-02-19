@@ -29,8 +29,11 @@ app.use('/health', require('./routes/health'))
 logger.debug('Add url-shortner routes')
 app.use('/short', require('./routes/url_shorter'))
 
-// swagger documentation
-app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
+
+app.use('/api-docs',
+    swaggerUi.serve, 
+    swaggerUi.setup(swaggerDocument)
+);
 
 // connect mongoose
 connectMongoose()
