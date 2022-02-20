@@ -18,9 +18,14 @@ npm install
 ```
 
 ### Running
-
+Before running the script, make sure to add **MONGODB_URI** value in .env file.
 ```
 npm start
+```
+
+### Testing
+```
+npm test
 ```
 
 ## Verify Uniqueness of short urls
