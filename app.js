@@ -31,7 +31,7 @@ logger.debug('Add url-shortner routes')
 app.use('/short', require('./routes/url_shorter'))
 
 // add swagger documentation
-app.use('/app-docs',
+app.use('/swagger',
     swaggerUi.serve, 
     swaggerUi.setup(swaggerDocument)
 );
