@@ -1,0 +1,13 @@
+{
+    "extension": [
+      "test.js",
+      "js"
+    ],
+    "recursive": true,
+    "timeout": 60000,
+    "require": ["./test/hooks.js"],
+    "jobs": 3,
+    "retries": 2,
+    "exit": true
+  }
+  

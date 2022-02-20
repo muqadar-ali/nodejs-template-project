@@ -1,6 +1,5 @@
 const logger = require('./config/logger')
 const safeJsonStringify = require('safe-json-stringify')
-require('dotenv').config();
 
 
 const fatalErrorJsonify = (err) => safeJsonStringify({

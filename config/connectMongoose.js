@@ -23,26 +23,23 @@ const getMongooseConfig = () => {
 }
 
 const getMongoInMemoryServerUri = async () => {
-  const replSet = new MongoMemoryReplSet({
+  const replSet = await MongoMemoryReplSet.create({
     replSet: { storageEngine: 'wiredTiger' }
   })
-  await replSet.waitUntilRunning()
+
   const mongoUri = await replSet.getUri()
 
   return mongoUri
 }
 
 const connectMongoose = async () => {
-  let mongoUri
 
-  if (testMode) {
-    mongoUri = await getMongoInMemoryServerUri()
-  } else {
-    mongoUri = process.env.MONGODB_URI
+  if (testMode) {    
+    process.env.MONGODB_URI = await getMongoInMemoryServerUri()
   }
 
   const mongooseConfig = getMongooseConfig()
-  return mongoose.connect(mongoUri, mongooseConfig)
+  return mongoose.connect(process.env.MONGODB_URI, mongooseConfig)
 }
 
 module.exports = connectMongoose
