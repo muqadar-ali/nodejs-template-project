@@ -35,7 +35,7 @@ const loggerMiddleware = expressWinston.logger({
     level: (req, res, err) => err.isServer ? 'error' : 'warn',
     exceptionToMeta: (err) => err.isServer ? exceptions.getAllInfo(err) : {},
     dynamicMeta: dynamicMetaParser,
-    msg: 'errorLoggerMiddleware {{err.message}} {{res.statusCode}} - {{req.method}} {{req.url}} correlation-id:{{req.correlationId}} - operator-identifier: {{req.operator}}'
+    msg: '{{err.message}} {{res.statusCode}} - {{req.method}} {{req.url}} correlation-id:{{req.correlationId}} - operator-identifier: {{req.operator}}'
   })
   
   module.exports = {

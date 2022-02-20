@@ -37,7 +37,6 @@ const connectMongoose = async () => {
   if (testMode) {    
     process.env.MONGODB_URI = await getMongoInMemoryServerUri()
   }
-
   const mongooseConfig = getMongooseConfig()
   return mongoose.connect(process.env.MONGODB_URI, mongooseConfig)
 }

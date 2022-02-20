@@ -54,27 +54,6 @@
               "description": "successful operation"
             }
           }
-        },
-        "get": {
-          "tags": [
-            "ShortUrl"
-          ],
-          "summary": "Get original url by short url",
-          "operationId": "getOriginalUrlByUrl",
-          "parameters": [
-            {
-              "name": "url",
-              "in": "query",
-              "description": "short url",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
-          }
         }
       },
       "/short/{identifier}": {
@@ -88,7 +67,30 @@
             {
               "name": "identifier",
               "in": "path",
-              "description": "Identifier for a specific url i.e. last 6 characters of short url",
+              "description": "Identifier is last 6 characters of short url",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/short/original": {
+        "get": {
+          "tags": [
+            "ShortUrl"
+          ],
+          "summary": "Get original url by short url",
+          "operationId": "getOriginalUrlByUrl",
+          "parameters": [
+            {
+              "name": "url",
+              "in": "query",
+              "description": "short url",
               "required": true,
               "type": "string"
             }

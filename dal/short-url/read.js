@@ -2,9 +2,14 @@ const ShortUrl = require('../models/short_url')
 
 const findById = async (id) => ShortUrl.findById(id)
 
-const findByShortIdentifier = async (identifier) => ShortUrl.findOne({ identifier: identifier })
-
-const findByShortURL = async (url) => ShortUrl.findOne({ new_url: url })
+const findByShort = async (value) => {
+    return ShortUrl.findOne({
+        $or: [
+            { identifier: value },
+            { new_url: value }
+        ]
+    })
+}
 
 const getDuplicatesCount = async () => {
     return ShortUrl.aggregate([
@@ -14,18 +19,18 @@ const getDuplicatesCount = async () => {
                 count: { $sum: 1 }
             }
         },
-        {$match: { 
-            count: {"$gt": 1}
+        {
+            $match: {
+                count: { "$gt": 1 }
             }
         },
-        {$group: {_id: null, total_duplicates: {'$sum': '$count'}}}
+        { $group: { _id: null, total_duplicates: { '$sum': '$count' } } }
     ]
     )
 }
 
 module.exports = {
     findById,
-    findByShortIdentifier,
-    findByShortURL,
+    findByShort,
     getDuplicatesCount
 }

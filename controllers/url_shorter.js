@@ -3,17 +3,22 @@ const { ShortUrlDAL } = require('../dal')
 const { ShortAnalyticsDAL } = require('../dal')
 
 const generateShortUrl = async(req,res,next) => {
-    const url = req.body.url
+    const url = req.body ? req.body.url : null
+
+    if(!url) next(Boom.badRequest('Invalid payload'))
+
     const newShortUrl = await ShortUrlDAL.createShortUrl(url)
+
     if(!newShortUrl) next(Boom.badRequest('Short url generation failed'))
+    
     return res.send({
         new_url: newShortUrl.new_url
     })
 } 
 
-const getOriginalUrlByIdentifier = async (req,res,next) => {
+const  getOriginalUrlByIdentifier = async (req,res,next) => {
     const identifier = req.params.identifier
-    const shortUrl = await ShortUrlDAL.findByShortIdentifier(identifier)
+    const shortUrl = await ShortUrlDAL.findByShort(identifier)
     
     if(!shortUrl) next(Boom.notFound(`url not found by identifier: ${identifier}`))
 
@@ -25,11 +30,12 @@ const getOriginalUrlByIdentifier = async (req,res,next) => {
     })
 }
 
-const getOriginalUrlByShortUrl = async (req,res,next) => {
-    const url = req.query.url
-    const shortUrl = await ShortUrlDAL.findByShortURL(url)
-
-    if(!shortUrl) next(Boom.notFound(`original url not found by short url: ${url}`))
+const  getOriginalUrlByShortUrl = async (req,res,next) => {
+    const identifier = req.query.url
+    
+    const shortUrl = await ShortUrlDAL.findByShort(identifier)
+    
+    if(!shortUrl) next(Boom.notFound(`url not found by url: ${identifier}`))
 
     //save analytics
     await ShortAnalyticsDAL.createShortAnalytics({short_url_id: shortUrl._id, user_agent: req.useragent.source})
@@ -49,7 +55,7 @@ const getDuplicatesCount = async (req,res,next) => {
 
 module.exports = {
     generateShortUrl,
-    getOriginalUrlByIdentifier,
     getDuplicatesCount,
+    getOriginalUrlByIdentifier,
     getOriginalUrlByShortUrl
 }
