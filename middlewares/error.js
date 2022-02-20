@@ -1,14 +1,16 @@
 const Boom = require('boom')
+const logger = require('../config/logger')
+
 
 /**
  * Boomify all errors. should be placed before any error handler
  */
 const boomifyErrorsMiddleware = (err, req, res, next) => {
     if (!err) return next()
-    return next((err) => {
+    return next(((err) => {
         if (!(err instanceof Error)) err = new Error(err)
         return err.isBoom ? err : Boom.boomify(err)
-    })
+    })(err))
 }
 
 /**
