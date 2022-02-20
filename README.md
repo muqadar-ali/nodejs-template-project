@@ -5,7 +5,7 @@ A custom url shortener application. This application uses machine counter of mon
 
   You should be able to browse swagger documentation of all APIs at below given url
     ```
-    https:///api-docs
+    https://tier-mobility-task.herokuapp.com/api-docs
     ```
 ## Getting Started
 Download the code from repository and follow below given instructions.
