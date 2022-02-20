@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "dotenv -e test.env mocha --exit --"
+    "test": "dotenv -e .env.test mocha --exit --"
   },
   "repository": {
     "type": "git",
