@@ -7,16 +7,20 @@ const { ShortUrl, ShortAnalytics }= require('../dal/models')
  const cleanUpDatabase = async () => Promise.all(Object.values(mongoose.connection.collections).map(collection => collection.deleteMany()))
 
 
-const generateShortUrl = (url) => {
+const generateShortUrl = (url,identifier=null) => {
 
     let shortUrl = new ShortUrl({
         old_url: url,
         new_url: 'https://tier.app/',
-        identifier:''
+        identifier:identifier
     })
-    //counter as new url
-    shortUrl.identifier= shortUrl._id.toString().slice(-6)
-    shortUrl.new_url+=shortUrl.identifier
+    
+    if(!identifier){
+        //counter as new url
+        shortUrl.identifier= shortUrl._id.toString().slice(-6)
+        shortUrl.new_url+=shortUrl.identifier
+    }
+   
     return shortUrl.save()
 }
 

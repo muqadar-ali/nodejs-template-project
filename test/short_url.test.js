@@ -85,3 +85,41 @@ describe('GET /short/original - Get original url', async () => {
     })
     
 })
+
+describe('GET /short/duplicates - Verify uniqueness', async () => {
+    beforeEach(cleanUpDatabase)
+
+    it('Should return 200 and duplicate count=0',async () => {
+        const shortUrl = await generateShortUrl('www.google.com')
+        const response = await request.get('/short/duplicates')
+        expect(response).to.have.status(200)
+        expect(response.body).to.deep.equal({
+            count: 0
+        })
+    })
+
+    it('Should return 200 and duplicate count=2',async () => {
+        await Promise.all([
+            generateShortUrl('www.google.com','123456'),
+            generateShortUrl('www.facebook.com','123456')
+        ])
+        const response = await request.get('/short/duplicates')
+        expect(response).to.have.status(200)
+        expect(response.body).to.deep.equal({
+            count: 2
+        })
+    })
+
+    it('Should return 200 and duplicate count=0 for 1000 requests ',async () => {
+        for(let i=0; i< 1000; ++i){
+            await generateShortUrl('www.google.com')
+        }
+        const response = await request.get('/short/duplicates')
+        expect(response).to.have.status(200)
+        expect(response.body).to.deep.equal({
+            count: 0
+        })
+    })
+
+    
+})
