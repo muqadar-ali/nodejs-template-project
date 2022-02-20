@@ -77,18 +77,18 @@
           }
         }
       },
-      "/short/{id}": {
+      "/short/{identifier}": {
         "get": {
           "tags": [
             "ShortUrl"
           ],
-          "summary": "Get original url by short id",
-          "operationId": "getOriginalUrlByShortId",
+          "summary": "Get original url by identifier",
+          "operationId": "getOriginalUrlByShortIdentifier",
           "parameters": [
             {
-              "name": "id",
+              "name": "identifier",
               "in": "path",
-              "description": "short id for a specific url. Short id is the last 6 characters of short url",
+              "description": "Identifier for a specific url i.e. last 6 characters of short url",
               "required": true,
               "type": "string"
             }
@@ -108,6 +108,29 @@
           "summary": "Get number of duplicate short urls",
           "description": "Get number of duplicates if any. \nThis is to verify the uniques of short urls",
           "operationId": "numberOfDuplicates",
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/analytics/{identifier}": {
+        "get": {
+          "tags": [
+            "Short Analytics"
+          ],
+          "summary": "Get number of visits by short identifier",
+          "operationId": "getNumberOfVisitsForShortIdentifier",
+          "parameters": [
+            {
+              "name": "identifier",
+              "in": "path",
+              "description": "Identifier for a specific url i.e. last 6 characters of short url",
+              "required": true,
+              "type": "string"
+            }
+          ],
           "responses": {
             "200": {
               "description": "successful operation"

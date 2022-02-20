@@ -6,7 +6,7 @@ const { boomifyErrorsMiddleware } = require('../middlewares/error')
 
 router.post('/', shortUrlController.generateShortUrl)
 router.get('/duplicates',shortUrlController.getDuplicatesCount)
-router.get('/:id', shortUrlController.getOriginalUrlByShortId)
+router.get('/:identifier', shortUrlController.getOriginalUrlByIdentifier)
 router.get('/', shortUrlController.getOriginalUrlByShortUrl)
 
 router.use(boomifyErrorsMiddleware)

@@ -1,20 +1,25 @@
 const Boom = require('boom')
-const logger = require('../config/logger')
 const { ShortUrlDAL } = require('../dal')
+const { ShortAnalyticsDAL } = require('../dal')
 
 const generateShortUrl = async(req,res,next) => {
     const url = req.body.url
     const newShortUrl = await ShortUrlDAL.createShortUrl(url)
-    if(!newShortUrl) next(Boom.badRequest('Unable to generate short url'))
+    if(!newShortUrl) next(Boom.badRequest('Short url generation failed'))
     return res.send({
         new_url: newShortUrl.new_url
     })
 } 
 
-const getOriginalUrlByShortId = async (req,res,next) => {
-    const shortId = req.params.id
-    const shortUrl = await ShortUrlDAL.findByShortId(shortId)
-    if(!shortUrl) next(Boom.notFound(`url not found by id: ${shortId}`))
+const getOriginalUrlByIdentifier = async (req,res,next) => {
+    const identifier = req.params.identifier
+    const shortUrl = await ShortUrlDAL.findByShortIdentifier(identifier)
+    
+    if(!shortUrl) next(Boom.notFound(`url not found by identifier: ${identifier}`))
+
+    //save analytics
+    await ShortAnalyticsDAL.createShortAnalytics({short_url_id: shortUrl._id, user_agent: req.useragent.source})
+
     return res.send({
         old_url: shortUrl.old_url
     })
@@ -23,23 +28,28 @@ const getOriginalUrlByShortId = async (req,res,next) => {
 const getOriginalUrlByShortUrl = async (req,res,next) => {
     const url = req.query.url
     const shortUrl = await ShortUrlDAL.findByShortURL(url)
+
     if(!shortUrl) next(Boom.notFound(`original url not found by short url: ${url}`))
+
+    //save analytics
+    await ShortAnalyticsDAL.createShortAnalytics({short_url_id: shortUrl._id, user_agent: req.useragent.source})
+
     return res.send({
         old_url: shortUrl.old_url
     })
 }
 
 const getDuplicatesCount = async (req,res,next) => {
-    const records = await ShortUrlDAL.getDuplicatesCount()
+    const data = await ShortUrlDAL.getDuplicatesCount()
     
     return res.send({
-        count: records ? records.length : 0
+        count: data  && data.length > 0 ? data[0].total_duplicates : 0
     })
 }
 
 module.exports = {
     generateShortUrl,
-    getOriginalUrlByShortId,
+    getOriginalUrlByIdentifier,
     getDuplicatesCount,
     getOriginalUrlByShortUrl
 }

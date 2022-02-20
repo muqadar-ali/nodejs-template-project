@@ -8,9 +8,14 @@ const shortUrlSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    short_id: {
+    identifier: {
         type: String,
         required: true
+    },
+    created_at: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 })
 

@@ -4,11 +4,11 @@ const createShortUrl = async (url) => {
   let shortUrl = new ShortUrl({
     old_url: url,
     new_url: 'https://tier.app/',
-    short_id:' '
+    identifier:''
   })
   //counter as new url
-  shortUrl.short_id= shortUrl._id.toString().slice(-6)
-  shortUrl.new_url+=shortUrl.short_id
+  shortUrl.identifier= shortUrl._id.toString().slice(-6)
+  shortUrl.new_url+=shortUrl.identifier
   return shortUrl.save()
 }
 

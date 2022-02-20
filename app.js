@@ -29,6 +29,8 @@ logger.debug('Add health routes')
 app.use('/health', require('./routes/health'))
 logger.debug('Add url-shortner routes')
 app.use('/short', require('./routes/url_shorter'))
+logger.debug('Add short analytics routes')
+app.use('/analytics', require('./routes/short_analytics'))
 
 // add swagger documentation
 app.use('/swagger',
