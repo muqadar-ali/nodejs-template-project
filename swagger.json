@@ -3,7 +3,7 @@
     "info": {
       "description": "This is a url shortner server by tier.app",
       "version": "1.0.0",
-      "title": "Swagger Url Shortner",
+      "title": "TIER Mobility Url Shortner",
       "termsOfService": "http://swagger.io/terms/"
     },
     "schemes": [
