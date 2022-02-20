@@ -13,7 +13,7 @@
       "/health": {
         "get": {
           "tags": [
-            "health"
+            "Health"
           ],
           "summary": "Verify application health",
           "operationId": "health",
