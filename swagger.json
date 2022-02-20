@@ -25,6 +25,36 @@
         }
       },
       "/short": {
+        "post": {
+          "tags": [
+            "ShortUrl"
+          ],
+          "summary": "Shorten a given url",
+          "description": "",
+          "operationId": "shortenUrl",
+          "parameters": [
+            {
+              "name": "url",
+              "in": "body",
+              "description": "A url that needs to be shortened",
+              "required": true,
+              "schema": {
+                  "type": "object",
+                  "properties": {
+                      "url": {
+                          "type":"string",
+                          "example": "https://about.tier.app/tier-talks-maas-tackling-the-challenge-of-open-ticketing/"
+                      }
+                  }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        },
         "get": {
           "tags": [
             "ShortUrl"
@@ -45,37 +75,7 @@
               "description": "successful operation"
             }
           }
-        },
-        "post": {
-            "tags": [
-              "ShortUrl"
-            ],
-            "summary": "Shorten a given url",
-            "description": "",
-            "operationId": "shortenUrl",
-            "parameters": [
-              {
-                "name": "url",
-                "in": "body",
-                "description": "A url that needs to be shortened",
-                "required": true,
-                "schema": {
-                    "type": "object",
-                    "properties": {
-                        "url": {
-                            "type":"string",
-                            "example": "https://about.tier.app/tier-talks-maas-tackling-the-challenge-of-open-ticketing/"
-                        }
-                    }
-                }
-              }
-            ],
-            "responses": {
-              "200": {
-                "description": "successful operation"
-              }
-            }
-          }
+        }
       },
       "/short/{id}": {
         "get": {
