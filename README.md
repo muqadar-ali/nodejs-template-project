@@ -3,10 +3,11 @@ A custom url shortener application. This application uses machine counter of mon
 ## Live demo
 * **Swagger**
 
-  You should be able to browse swagger documentation of all APIs at below given url
-    ```
+  You should be able to browse swagger documentation of all APIs at below given url:
+
+  
     https://tier-mobility-task.herokuapp.com/api-docs
-    ```
+
 ## Getting Started
 Download the code from repository and follow below given instructions.
 
