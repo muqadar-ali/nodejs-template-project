@@ -27,7 +27,7 @@
       "/short": {
         "get": {
           "tags": [
-            "Get Original Url by Short Url"
+            "ShortUrl"
           ],
           "summary": "Get original url by short url",
           "operationId": "getOriginalUrlByUrl",
@@ -48,7 +48,7 @@
         },
         "post": {
             "tags": [
-              "Shorten a url"
+              "ShortUrl"
             ],
             "summary": "Shorten a given url",
             "description": "",
@@ -80,7 +80,7 @@
       "/short/{id}": {
         "get": {
           "tags": [
-            "Get Original Url by Short Id"
+            "ShortUrl"
           ],
           "summary": "Get original url by short id",
           "operationId": "getOriginalUrlByShortId",
@@ -103,7 +103,7 @@
       "/short/duplicates": {
         "get": {
           "tags": [
-            "Number of Duplicate Short Urls"
+            "ShortUrl"
           ],
           "summary": "Get number of duplicate short urls",
           "description": "Get number of duplicates if any. \nThis is to verify the uniques of short urls",
