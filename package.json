@@ -1,5 +1,5 @@
 {
-  "name": "tier-mobility-task",
+  "name": "nodejs-template-project",
   "version": "1.0.0",
   "description": "A template to kick start Node.js and Express.js with test cases.",
   "main": "index.js",
@@ -8,16 +8,8 @@
     "dev": "nodemon index.js",
     "test": "dotenv -e .env.test mocha --exit --"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/muqadar-ali/tier-mobility-task.git"
-  },
   "author": "Muqadar Ali",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/muqadar-ali/tier-mobility-task/issues"
-  },
-  "homepage": "https://github.com/muqadar-ali/tier-mobility-task#readme",
   "dependencies": {
     "boom": "^7.3.0",
     "compression": "^1.7.4",

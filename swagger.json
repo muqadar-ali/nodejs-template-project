@@ -1,9 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-      "description": "This is a url shortner server by tier.app",
+      "description": "nodejs-template-project",
       "version": "1.0.0",
-      "title": "TIER Mobility Url Shortner"
+      "title": "Sample node.js template project"
     },
     "schemes": [
       "https",
@@ -24,26 +24,26 @@
           }
         }
       },
-      "/short": {
+      "/help": {
         "post": {
           "tags": [
-            "ShortUrl"
+            "Help"
           ],
-          "summary": "Shorten a given url",
+          "summary": "Create a new help item",
           "description": "",
-          "operationId": "shortenUrl",
+          "operationId": "createHelp",
           "parameters": [
             {
-              "name": "url",
+              "name": "title",
               "in": "body",
-              "description": "A url that needs to be shortened",
+              "description": "Help title menu",
               "required": true,
               "schema": {
                   "type": "object",
                   "properties": {
-                      "url": {
+                      "title": {
                           "type":"string",
-                          "example": "https://about.tier.app/tier-talks-maas-tackling-the-challenge-of-open-ticketing/"
+                          "example": "This is a sample help title"
                       }
                   }
               }
@@ -56,79 +56,18 @@
           }
         }
       },
-      "/short/{identifier}": {
+      "/help/{id}": {
         "get": {
           "tags": [
-            "ShortUrl"
+            "Help"
           ],
-          "summary": "Get original url by identifier",
-          "operationId": "getOriginalUrlByShortIdentifier",
+          "summary": "Get help by id",
+          "operationId": "getHelpById",
           "parameters": [
             {
-              "name": "identifier",
+              "name": "id",
               "in": "path",
-              "description": "Identifier is last 6 characters of short url",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/short/original": {
-        "get": {
-          "tags": [
-            "ShortUrl"
-          ],
-          "summary": "Get original url by short url",
-          "operationId": "getOriginalUrlByUrl",
-          "parameters": [
-            {
-              "name": "url",
-              "in": "query",
-              "description": "short url",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/short/duplicates": {
-        "get": {
-          "tags": [
-            "ShortUrl"
-          ],
-          "summary": "Get number of duplicate short urls",
-          "description": "Get number of duplicates if any. \nThis is to verify the uniques of short urls",
-          "operationId": "numberOfDuplicates",
-          "responses": {
-            "200": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/analytics/{identifier}": {
-        "get": {
-          "tags": [
-            "Short Analytics"
-          ],
-          "summary": "Get number of visits by short identifier",
-          "operationId": "getNumberOfVisitsForShortIdentifier",
-          "parameters": [
-            {
-              "name": "identifier",
-              "in": "path",
-              "description": "Identifier for a specific url i.e. last 6 characters of short url",
+              "description": "",
               "required": true,
               "type": "string"
             }

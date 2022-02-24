@@ -9,7 +9,6 @@ const { loggerMiddleware, errorLoggerMiddleware } = require('./middlewares/http_
 const { boomifyErrorsMiddleware, errorHandlerMiddleware } = require('./middlewares/error')
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
-const Boom = require('boom')
 
 // Connect to MongoDB.
 require('./config/mongoose')
@@ -28,10 +27,8 @@ app.use(useragent.express())
 // add routes
 logger.debug('Add health routes')
 app.use('/health', require('./routes/health'))
-logger.debug('Add url-shortner routes')
-app.use('/short', require('./routes/url_shorter'))
-logger.debug('Add short analytics routes')
-app.use('/analytics', require('./routes/short_analytics'))
+logger.debug('Add help routes')
+app.use('/help', require('./routes/help'))
 
 // add swagger documentation
 app.use('/swagger',
