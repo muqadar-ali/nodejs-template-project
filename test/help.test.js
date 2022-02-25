@@ -1,8 +1,6 @@
 const {request} = require('./utils/app')
 const { cleanUpDatabase, createHelp  } = require('../utils/db')
 const { expect } = require('./utils/chai')
-const { Help } = require('../dal/models')
-const { create } = require('../dal/models/help')
 const { default: mongoose } = require('mongoose')
 
 describe('POST /help - Create help', async () => {
