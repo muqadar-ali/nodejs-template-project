@@ -25,6 +25,5 @@ npm test
 * [NodeJs](https://nodejs.org/en/)
 * [ExpressJs](https://expressjs.com)
 * [MongoDB](https://www.mongodb.com/)
-* [Heroku](http://heroku.com/)
 ## Authors
 * **Muqadar Ali Jamali**
